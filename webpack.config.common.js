@@ -1,8 +1,8 @@
 const webpack = require("webpack");
-const { TsConfigPathsPlugin } = require("awesome-typescript-loader");
+const { TsConfigPathsPlugin, CheckerPlugin } = require("awesome-typescript-loader");
 
 module.exports = {
-  entry: "./app/index.tsx",
+  entry: ["babel-polyfill", "./app/index.tsx"],
   devtool: "source-map",
   output: {
     path: __dirname + "/public",
@@ -17,10 +17,21 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        loader: "awesome-typescript-loader",
-        options: {
-          transpileOnly: true,
-        },
+        exclude: /(node_modules|bower_components)/,
+        use: [
+          {
+            loader: "babel-loader",
+            options: {
+              cacheDirectory: true,
+            },
+          },
+          {
+            loader: "awesome-typescript-loader",
+            options: {
+              transpileOnly: true,
+            },
+          },
+        ],
       },
       {
         enforce: "pre",
@@ -32,5 +43,6 @@ module.exports = {
   plugins: [
     new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
+    new CheckerPlugin(),
   ],
 };

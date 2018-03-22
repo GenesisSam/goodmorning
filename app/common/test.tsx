@@ -19,7 +19,7 @@ class Hello extends React.Component<IProps> {
   }
 
   public render() {
-    return <div className={styles.wrapper}>Hello world with typescript</div>;
+    return <div className={styles.wrapper}>Hello world with typescript!!!! :)</div>;
   }
 }
 
