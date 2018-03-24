@@ -1,0 +1,17 @@
+body {
+    margin: 0;
+    display: block;
+}
+
+div,
+aside,
+nav,
+header {
+    display: block;
+    box-sizing: border-box;
+}
+
+.rootWrapper {
+    width: 100%;
+    height: 100vh;
+}
