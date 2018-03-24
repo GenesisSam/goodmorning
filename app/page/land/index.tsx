@@ -4,6 +4,7 @@ import { connect, Dispatch } from "react-redux";
 import { AppReducer } from "../../typings/reducer";
 import { changeBGImage } from "../../actions/landing";
 import NavBar from "../../common/navBar/index";
+import PreLoader from "../../common/preLoader/index";
 
 const styles = require("./index.scss");
 
@@ -26,7 +27,7 @@ function mapStateToProps(appState: AppReducer.IStore) {
 }
 
 class LandPage extends React.PureComponent<IProps> {
-  private currentPos = 1;
+  private currentPos = 0;
   private handlerImageChanger: NodeJS.Timer;
 
   public componentDidMount() {
@@ -41,7 +42,8 @@ class LandPage extends React.PureComponent<IProps> {
     return (
       <div className={styles.wrapper}>
         <NavBar className={styles.fixedNav} />
-        <ImageCoverHolder className={styles.background} src={this.props.landing.currentImageSrc ? this.props.landing.currentImageSrc : IMAGE_RES_SRC[0]} width="100%" height="100%" />
+        <ImageCoverHolder className={styles.background} src={this.props.landing.currentImageSrc ? this.props.landing.currentImageSrc : IMAGE_RES_SRC[0]} width="100%" height="100%" useBackground />
+        <PreLoader imageUrls={IMAGE_RES_SRC} />
       </div>
     )
   }

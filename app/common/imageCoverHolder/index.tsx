@@ -1,12 +1,13 @@
 import * as React from "react";
 
 interface IProps extends React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> {
+  useBackground?: boolean;
 }
 
 const ImageCoverHolder = (props: IProps) => {
 
-  if ("object-fit" in document.body.style) {
-    const { style, ...rest } = props;
+  if ("object-fit" in document.body.style && !props.useBackground) {
+    const { style, useBackground: _var1, ...rest } = props;
 
     return <img style={{
       ...style,
@@ -14,11 +15,11 @@ const ImageCoverHolder = (props: IProps) => {
     }} {...rest} />
 
   } else {
-    const { style, src: _src, ...rest } = props;
+    const { style, useBackground: _var1, src, ...rest } = props;
 
     return <img style={{
       ...style,
-      backgroundImage: `url(${this.props.src})`,
+      backgroundImage: `url(${src})`,
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
       backgroundAttachment: "fixed",

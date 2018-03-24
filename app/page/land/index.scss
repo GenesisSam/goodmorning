@@ -14,4 +14,5 @@
 
 .background {
     z-index: $z-background;
+    transition: background-image 1s cubic-bezier(0.49, 0.54, 0.14, 1.17)
 }
