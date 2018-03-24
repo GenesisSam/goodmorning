@@ -1,0 +1,15 @@
+@import "../../global/variables";
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: $navBar-height;
+}
+
+.logo {
+    font-family: 'Anton', sans-serif;
+    height: 32px;
+    font-size: 30px;
+    line-height: 32px;
+    color: white;
+}

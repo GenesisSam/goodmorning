@@ -9,9 +9,11 @@ import { createLogger } from "redux-logger";
 import { createBrowserHistory } from "history";
 import { ConnectedRouter } from "react-router-redux";
 
+import * as WebFont from "webfontloader";
+
 import rootReducer from "./rootReducer";
 import RootWrapper from "./global/root";
-import Landing from "./page/landing/index";
+import Landing from "./page/land";
 
 const history = createBrowserHistory();
 const middleWares: any = [thunk];
@@ -34,3 +36,9 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("mainContainer"),
 );
+
+WebFont.load({
+  google: {
+    families: ["Anton"]
+  }
+});

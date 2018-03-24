@@ -3,6 +3,7 @@ import ImageCoverHolder from "../../common/imageCoverHolder";
 import { connect, Dispatch } from "react-redux";
 import { AppReducer } from "../../typings/reducer";
 import { changeBGImage } from "../../actions/landing";
+import NavBar from "../../common/navBar/index";
 
 const styles = require("./index.scss");
 
@@ -24,7 +25,7 @@ function mapStateToProps(appState: AppReducer.IStore) {
   }
 }
 
-class Landing extends React.PureComponent<IProps> {
+class LandPage extends React.PureComponent<IProps> {
   private currentPos = 1;
   private handlerImageChanger: NodeJS.Timer;
 
@@ -39,7 +40,8 @@ class Landing extends React.PureComponent<IProps> {
   public render() {
     return (
       <div className={styles.wrapper}>
-        <ImageCoverHolder src={this.props.landing.currentImageSrc ? this.props.landing.currentImageSrc : IMAGE_RES_SRC[0]} width="100%" height="100%" />
+        <NavBar className={styles.fixedNav} />
+        <ImageCoverHolder className={styles.background} src={this.props.landing.currentImageSrc ? this.props.landing.currentImageSrc : IMAGE_RES_SRC[0]} width="100%" height="100%" />
       </div>
     )
   }
@@ -51,4 +53,4 @@ class Landing extends React.PureComponent<IProps> {
 }
 
 
-export default connect(mapStateToProps)(Landing);
+export default connect(mapStateToProps)(LandPage);
