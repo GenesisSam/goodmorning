@@ -13,6 +13,8 @@ const IMAGE_RES_SRC = [
   "https://firebasestorage.googleapis.com/v0/b/goodmorning-7d726.appspot.com/o/bg%2Fbg02.jpg?alt=media",
   "https://firebasestorage.googleapis.com/v0/b/goodmorning-7d726.appspot.com/o/bg%2Fbg03.jpg?alt=media",
   "https://firebasestorage.googleapis.com/v0/b/goodmorning-7d726.appspot.com/o/bg%2Fbg04.jpg?alt=media",
+  "https://firebasestorage.googleapis.com/v0/b/goodmorning-7d726.appspot.com/o/bg%2Fbg05.jpg?alt=media",
+  "https://firebasestorage.googleapis.com/v0/b/goodmorning-7d726.appspot.com/o/bg%2Fbg06.jpg?alt=media",
 ]
 
 interface IProps {
