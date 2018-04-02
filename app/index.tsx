@@ -8,12 +8,23 @@ import { createLogger } from "redux-logger";
 
 import { createBrowserHistory } from "history";
 import { ConnectedRouter } from "react-router-redux";
-
 import * as WebFont from "webfontloader";
 
 import rootReducer from "./rootReducer";
 import RootWrapper from "./global/root";
 import Landing from "./page/land";
+
+import * as firebase from "firebase";
+console.log(firebase);
+
+firebase.initializeApp({
+  apiKey: "AIzaSyBn3VfYEp-uFpute0cgVgjJEJu3ilniH_g",
+  authDomain: "goodmorning-7d726.firebaseapp.com",
+  databaseURL: "https://goodmorning-7d726.firebaseio.com",
+  projectId: "goodmorning-7d726",
+  storageBucket: "goodmorning-7d726.appspot.com",
+  messagingSenderId: "415046624063",
+});
 
 const history = createBrowserHistory();
 const middleWares: any = [thunk];
@@ -39,6 +50,6 @@ ReactDOM.render(
 
 WebFont.load({
   google: {
-    families: ["Anton"]
-  }
+    families: ["Anton"],
+  },
 });

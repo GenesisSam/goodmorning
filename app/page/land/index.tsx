@@ -1,10 +1,11 @@
 import * as React from "react";
 import ImageCoverHolder from "../../common/imageCoverHolder";
 import { connect, Dispatch } from "react-redux";
+import * as firebase from "firebase";
 import { AppReducer } from "../../typings/reducer";
 import { changeBGImage } from "../../actions/landing";
-import NavBar from "../../common/navBar/index";
-import PreLoader from "../../common/preLoader/index";
+import NavBar from "../../common/navBar";
+import PreLoader from "../../common/preLoader";
 
 const styles = require("./index.scss");
 
@@ -15,7 +16,7 @@ const IMAGE_RES_SRC = [
   "https://firebasestorage.googleapis.com/v0/b/goodmorning-7d726.appspot.com/o/bg%2Fbg04.jpg?alt=media",
   "https://firebasestorage.googleapis.com/v0/b/goodmorning-7d726.appspot.com/o/bg%2Fbg05.jpg?alt=media",
   "https://firebasestorage.googleapis.com/v0/b/goodmorning-7d726.appspot.com/o/bg%2Fbg06.jpg?alt=media",
-]
+];
 
 interface IProps {
   landing: Landing.IStore;
@@ -25,7 +26,7 @@ interface IProps {
 function mapStateToProps(appState: AppReducer.IStore) {
   return {
     landing: appState.landing,
-  }
+  };
 }
 
 class LandPage extends React.PureComponent<IProps> {
@@ -34,6 +35,7 @@ class LandPage extends React.PureComponent<IProps> {
 
   public componentDidMount() {
     this.handlerImageChanger = setInterval(this.handleChangeImage, 5000);
+    const db = firebase.database();
   }
 
   public componentWillUnmount() {
@@ -44,17 +46,27 @@ class LandPage extends React.PureComponent<IProps> {
     return (
       <div className={styles.wrapper}>
         <NavBar className={styles.fixedNav} />
-        <ImageCoverHolder className={styles.background} src={this.props.landing.currentImageSrc ? this.props.landing.currentImageSrc : IMAGE_RES_SRC[0]} width="100%" height="100%" useBackground />
+        <ImageCoverHolder
+          className={styles.background}
+          src={
+            this.props.landing.currentImageSrc
+              ? this.props.landing.currentImageSrc
+              : IMAGE_RES_SRC[0]
+          }
+          width="100%"
+          height="100%"
+          useBackground
+        />
         <PreLoader imageUrls={IMAGE_RES_SRC} />
       </div>
-    )
+    );
   }
 
   handleChangeImage = () => {
-    this.currentPos = this.currentPos < IMAGE_RES_SRC.length - 1 ? this.currentPos + 1 : 0;
+    this.currentPos =
+      this.currentPos < IMAGE_RES_SRC.length - 1 ? this.currentPos + 1 : 0;
     this.props.dispatch(changeBGImage(IMAGE_RES_SRC[this.currentPos]));
-  }
+  };
 }
-
 
 export default connect(mapStateToProps)(LandPage);
